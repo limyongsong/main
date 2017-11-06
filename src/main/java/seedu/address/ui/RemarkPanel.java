@@ -24,7 +24,7 @@ public class RemarkPanel extends UiPart<Region> {
     private static final String FXML = "RemarkPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RemarkPanel.class);
 
-    private final StringProperty displayed = new SimpleStringProperty("");
+    private final StringProperty displayed = new SimpleStringProperty("---Remarks---\n");
 
     @FXML
     private TextArea remarkPanel;
@@ -62,10 +62,8 @@ public class RemarkPanel extends UiPart<Region> {
                 String printedString = "Remarks regarding " + String.valueOf(personList.get(i).getName()) + ":\n"
                         + "---------------------------------------------------\n";
                 for (int j = 0; j < personList.get(i).getRemark().size(); j++) {
-                    if (!personList.get(i).getRemark().get(j).value.equals("")) {
-                        printedString = printedString.concat(j + 1 + "). "
-                                + personList.get(i).getRemark().get(j).value + "\n");
-                    }
+                    printedString = printedString.concat(j + 1 + "). "
+                            + personList.get(i).getRemark().get(j).value + "\n");
                 }
                 final String finalString = printedString;
                 Platform.runLater(() -> displayed.setValue(finalString));
